@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "160315855672",
+    "project_id": "pragj-bad7a",
+    "storage_bucket": "pragj-bad7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160315855672:android:f898ad79dad850386e27cd",
+        "android_client_info": {
+          "package_name": "com.example.pragj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160315855672-a63sul4vrfar8rksjseonjti6a8vgeo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCK1ioHJLAiMSKIuFPc7d1ESoPRfAFGTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160315855672-a63sul4vrfar8rksjseonjti6a8vgeo9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
