@@ -39,6 +39,7 @@ dependencies:
   image: ^4.0.17
   image_picker: ^1.0.4
   image_picker_for_web: ^3.0.1
+  translator: ^0.1.7
 
 dev_dependencies:
   flutter_lints: ^2.0.0
