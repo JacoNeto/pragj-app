@@ -17,18 +17,16 @@ class MyButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white, foregroundColor: Colors.black),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              width: 12,
-            ),
             leading,
             const SizedBox(
-              width: 8,
+              width: 4,
             ),
             Text(
               label,
               style: const TextStyle(color: Colors.black, fontSize: 20),
-            )
+            ),
           ],
         ),
       ),

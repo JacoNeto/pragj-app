@@ -8,9 +8,6 @@ class ResultPage extends StatelessWidget {
 
   final HomeController homeController = Get.find();
 
-  final text =
-      "Os animes são uma forma de entretenimento japonesa que conquistou o mundo com sua rica narrativa e personagens cativantes. Com estilos que variam de ação frenética a dramas emocionantes, os animes atraem uma ampla gama de públicos. A arte vibrante e a trilha sonora envolvente são elementos que tornam cada série única. Alguns animes exploram temas profundos, enquanto outros oferecem comédia e escapismo. Com uma vasta lista de títulos para escolher, os fãs de anime podem encontrar algo que se encaixe perfeitamente em seus gostos pessoais, tornando essa forma de entretenimento verdadeiramente diversificada e envolvente.";
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -19,13 +16,26 @@ class ResultPage extends StatelessWidget {
         return true;
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text("Resultado")),
+        appBar: AppBar(
+          backgroundColor: Colors.amber,
+          title: const Text("Resultado"),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(homeController.text.value),
+                const SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(homeController.text.value, textAlign: TextAlign.justify),
+                    ]
+                  )
+                ),
                 const SizedBox(
                   height: 12,
                 ),

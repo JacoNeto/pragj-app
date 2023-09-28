@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pragj/controllers/home_controller.dart';
+import 'package:pragj/pages/result/result_page.dart';
 import 'package:pragj/utils/shared_widgets/my_button.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -15,7 +16,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.amber,
         title: const Text("PragJ"),
       ),
       body: Padding(
@@ -31,14 +32,19 @@ class MyHomePage extends StatelessWidget {
                       ? Stack(
                           children: [
                             SizedBox(
-                                height: 500,
-                                width: 500,
-                                child: kIsWeb
-                                    ? Image.network(
-                                        _homeController.imageXFile.value!.path)
-                                    : Image.file(File(_homeController
-                                        .imageFile.value!.path))),
+                              height: 500,
+                              width: 500,
+                              child: kIsWeb
+                                ? Image.network(
+                                    _homeController.imageXFile.value!.path
+                                  )
+                                : Image.file(File(
+                                    _homeController.imageFile.value!.path
+                                    )
+                                  )
+                            ),
                             CloseButton(
+                              color: Colors.red,
                               onPressed: () => _homeController.clearImage(),
                             )
                           ],
@@ -91,10 +97,12 @@ class MyHomePage extends StatelessWidget {
                             leading: _homeController.isUploadLoading.value
                                 ? const CircularProgressIndicator()
                                 : const Icon(Icons.generating_tokens),
-                            label: "Gerar texto",
+                            label: !_homeController.isUploadLoading.value
+                              ? "Gerar Texto"
+                              : " Processando...",
                             onPressed: () async {
                               await _homeController.uploadImage();
-                              // navegar para a tela de resultado
+                              Get.to(ResultPage());
                             },
                           )
                         : const SizedBox.shrink(),
