@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
                       ? GestureDetector(
                           onLongPress: () {
                             _homeController.speak(
-                                "Há uma umagem selecionada. Toque no botão mais em baixo para gerar a descrição.");
+                                "Há uma imagem selecionada. Toque no botão mais embaixo para gerar a descrição.");
                           },
                           child: Stack(
                             children: [
@@ -56,7 +56,7 @@ class MyHomePage extends StatelessWidget {
                       : GestureDetector(
                           onLongPress: () {
                             _homeController.speak(
-                                "Você ainda não selecionou uam imagem. Toque em um dos botões abaixo para selecionar uma foto.");
+                                "Você ainda não selecionou uma imagem. Toque em um dos botões abaixo para selecionar uma foto.");
                           },
                           child: const Material(
                             child: SizedBox(
@@ -76,27 +76,40 @@ class MyHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: MyButton(
-                        leading: const Icon(
-                          Icons.photo,
-                          color: Colors.black,
-                        ),
-                        label: "Galeria",
-                        onPressed: () {
-                          _homeController.pickImageFromGallery();
+                      child: GestureDetector(
+                        onLongPress: () {
+                          _homeController.speak(
+                              "Use este botão para selecionar uma imagem pela galeria");
                         },
+                        child: MyButton(
+                          leading: const Icon(
+                            Icons.photo,
+                            color: Colors.black,
+                          ),
+                          label: "Galeria",
+                          onPressed: () {
+                            _homeController.pickImageFromGallery();
+                          },
+                        ),
                       ),
                     ),
                     const SizedBox(
                       width: 8,
                     ),
                     Expanded(
-                      child: MyButton(
-                        leading: const Icon(Icons.camera, color: Colors.black),
-                        label: "Foto",
-                        onPressed: () {
-                          _homeController.pickImageFromCamera();
+                      child: GestureDetector(
+                        onLongPress: () {
+                          _homeController.speak(
+                              "Use este botão para selecionar uma imagem pela câmera");
                         },
+                        child: MyButton(
+                          leading:
+                              const Icon(Icons.camera, color: Colors.black),
+                          label: "Foto",
+                          onPressed: () {
+                            _homeController.pickImageFromCamera();
+                          },
+                        ),
                       ),
                     ),
                   ],
@@ -105,19 +118,21 @@ class MyHomePage extends StatelessWidget {
               Obx(() => Padding(
                     padding: const EdgeInsets.all(8),
                     child: _homeController.hasImageFile()
-                        ? MyButton(
-                            leading: _homeController.isUploadLoading.value
-                                ? const CircularProgressIndicator()
-                                : const Icon(Icons.generating_tokens),
-                            label: _homeController.isProcessingLoading.value
-                                ? "Analisando imagem..."
-                                : !_homeController.isUploadLoading.value
-                                    ? "Gerar Texto"
-                                    : " Processando...",
-                            onPressed: () async {
-                              await _homeController.uploadImage();
-                              Get.to(ResultPage());
+                        ? GestureDetector(
+                            onLongPress: () {
+                              _homeController.speak(
+                                  "Use este botão para gerar um texto longo");
                             },
+                            child: MyButton(
+                              leading: _homeController.isUploadLoading.value
+                                  ? const CircularProgressIndicator()
+                                  : const Icon(Icons.generating_tokens),
+                              label: "Gerar texto",
+                              onPressed: () async {
+                                await _homeController.uploadImage();
+                                Get.to(ResultPage());
+                              },
+                            ),
                           )
                         : const SizedBox.shrink(),
                   )),

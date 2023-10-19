@@ -35,7 +35,7 @@ class ResultPage extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(children: [
-                      Text(homeController.text.value,
+                      Text(homeController.longText.value,
                           textAlign: TextAlign.justify),
                     ])),
                 const SizedBox(
@@ -50,7 +50,7 @@ class ResultPage extends StatelessWidget {
                           : "Reproduzir",
                       onPressed: () => homeController.isReproducing.value
                           ? homeController.stop()
-                          : homeController.speak(homeController.text.value),
+                          : homeController.speak(homeController.longText.value),
                     ))
               ],
             ),
