@@ -18,7 +18,11 @@ class ResultPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.amber,
-          title: const Text("Resultado"),
+          title: const Text(
+            "Resultado",
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: const IconThemeData(color: Colors.black),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -29,13 +33,11 @@ class ResultPage extends StatelessWidget {
                   height: 12,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text(homeController.text.value, textAlign: TextAlign.justify),
-                    ]
-                  )
-                ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(children: [
+                      Text(homeController.text.value,
+                          textAlign: TextAlign.justify),
+                    ])),
                 const SizedBox(
                   height: 12,
                 ),

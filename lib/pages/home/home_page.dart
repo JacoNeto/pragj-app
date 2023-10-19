@@ -17,7 +17,10 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        title: const Text("PragJ"),
+        title: const Text(
+          "PragJ",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -32,17 +35,13 @@ class MyHomePage extends StatelessWidget {
                       ? Stack(
                           children: [
                             SizedBox(
-                              height: 500,
-                              width: 500,
-                              child: kIsWeb
-                                ? Image.network(
-                                    _homeController.imageXFile.value!.path
-                                  )
-                                : Image.file(File(
-                                    _homeController.imageFile.value!.path
-                                    )
-                                  )
-                            ),
+                                height: 500,
+                                width: 500,
+                                child: kIsWeb
+                                    ? Image.network(
+                                        _homeController.imageXFile.value!.path)
+                                    : Image.file(File(_homeController
+                                        .imageFile.value!.path))),
                             CloseButton(
                               color: Colors.red,
                               onPressed: () => _homeController.clearImage(),
@@ -97,9 +96,11 @@ class MyHomePage extends StatelessWidget {
                             leading: _homeController.isUploadLoading.value
                                 ? const CircularProgressIndicator()
                                 : const Icon(Icons.generating_tokens),
-                            label: !_homeController.isUploadLoading.value
-                              ? "Gerar Texto"
-                              : " Processando...",
+                            label: _homeController.isProcessingLoading.value
+                                ? "Analisando imagem..."
+                                : !_homeController.isUploadLoading.value
+                                    ? "Gerar Texto"
+                                    : " Processando...",
                             onPressed: () async {
                               await _homeController.uploadImage();
                               Get.to(ResultPage());
