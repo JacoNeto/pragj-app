@@ -15,47 +15,76 @@ class ResultPage extends StatelessWidget {
         homeController.stop();
         return true;
       },
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.amber,
-          title: const Text(
-            "Resultado",
-            style: TextStyle(color: Colors.black),
-          ),
-          iconTheme: const IconThemeData(color: Colors.black),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(children: [
-                      Text(homeController.longText.value,
-                          textAlign: TextAlign.justify),
-                    ])),
-                const SizedBox(
-                  height: 12,
-                ),
-                Obx(() => MyButton(
-                      leading: homeController.isReproducing.value
-                          ? const Icon(Icons.stop)
-                          : const Icon(Icons.play_arrow),
-                      label: homeController.isReproducing.value
-                          ? "Parar"
-                          : "Reproduzir",
-                      onPressed: () => homeController.isReproducing.value
-                          ? homeController.stop()
-                          : homeController.speak(homeController.longText.value),
-                    ))
-              ],
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+            appBar: AppBar(
+              title: const Text("Resultado"),
+              bottom: const TabBar(
+                tabs: [
+                  Tab(
+                    icon: Icon(Icons.density_large),
+                    text: "Curta",
+                  ),
+                  Tab(
+                    icon: Icon(Icons.density_small),
+                    text: "Longa",
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
+            body: TabBarView(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(homeController.shortText.value),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Obx(() => MyButton(
+                            leading: homeController.isReproducing.value
+                                ? const Icon(Icons.stop)
+                                : const Icon(Icons.play_arrow),
+                            label: homeController.isReproducing.value
+                                ? "Parar"
+                                : "Reproduzir",
+                            onPressed: () => homeController.isReproducing.value
+                                ? homeController.stop()
+                                : homeController
+                                    .speak(homeController.shortText.value),
+                          ))
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(homeController.longText.value),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Obx(() => MyButton(
+                            leading: homeController.isReproducing.value
+                                ? const Icon(Icons.stop)
+                                : const Icon(Icons.play_arrow),
+                            label: homeController.isReproducing.value
+                                ? "Parar"
+                                : "Reproduzir",
+                            onPressed: () => homeController.isReproducing.value
+                                ? homeController.stop()
+                                : homeController
+                                    .speak(homeController.longText.value),
+                          ))
+                    ],
+                  ),
+                ),
+              ),
+            ])),
       ),
     );
   }
