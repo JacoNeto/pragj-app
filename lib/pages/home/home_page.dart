@@ -32,26 +32,39 @@ class MyHomePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(() => _homeController.hasImageFile()
-                      ? Stack(
-                          children: [
-                            SizedBox(
-                                height: 500,
-                                width: 500,
-                                child: kIsWeb
-                                    ? Image.network(
-                                        _homeController.imageXFile.value!.path)
-                                    : Image.file(File(_homeController
-                                        .imageFile.value!.path))),
-                            CloseButton(
-                              color: Colors.red,
-                              onPressed: () => _homeController.clearImage(),
-                            )
-                          ],
+                      ? GestureDetector(
+                          onLongPress: () {
+                            _homeController.speak(
+                                "Há uma umagem selecionada. Toque no botão mais em baixo para gerar a descrição.");
+                          },
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                  height: 500,
+                                  width: 500,
+                                  child: kIsWeb
+                                      ? Image.network(_homeController
+                                          .imageXFile.value!.path)
+                                      : Image.file(File(_homeController
+                                          .imageFile.value!.path))),
+                              CloseButton(
+                                onPressed: () => _homeController.clearImage(),
+                              )
+                            ],
+                          ),
                         )
-                      : const SizedBox(
-                          height: 400,
-                          width: double.infinity,
-                          child: Icon(Icons.image),
+                      : GestureDetector(
+                          onLongPress: () {
+                            _homeController.speak(
+                                "Você ainda não selecionou uam imagem. Toque em um dos botões abaixo para selecionar uma foto.");
+                          },
+                          child: const Material(
+                            child: SizedBox(
+                              height: 400,
+                              width: double.infinity,
+                              child: Icon(Icons.image),
+                            ),
+                          ),
                         )),
                 ),
               ),
