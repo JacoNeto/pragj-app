@@ -20,8 +20,15 @@ class ResultPage extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               title: const Text("Resultado"),
-              bottom: const TabBar(
-                tabs: [
+              bottom: TabBar(
+                onTap: (index) {
+                  if (index == 0) {
+                    homeController.speak("Exibindo descrição curta");
+                  } else {
+                    homeController.speak("Exibindo descrição longa");
+                  }
+                },
+                tabs: const [
                   Tab(
                     icon: Icon(Icons.density_large),
                     text: "Curta",
@@ -54,6 +61,10 @@ class ResultPage extends StatelessWidget {
                                 ? homeController.stop()
                                 : homeController
                                     .speak(homeController.shortText.value),
+                            onLongPress: () {
+                              homeController.speak(
+                                  "Dê um toque para reproduzir a descrição");
+                            },
                           ))
                     ],
                   ),
@@ -79,6 +90,10 @@ class ResultPage extends StatelessWidget {
                                 ? homeController.stop()
                                 : homeController
                                     .speak(homeController.longText.value),
+                            onLongPress: () {
+                              homeController.speak(
+                                  "Dê um toque para reproduzir a descrição");
+                            },
                           ))
                     ],
                   ),
