@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton(
-      {super.key, this.onPressed, required this.leading, required this.label});
+      {super.key,
+      this.onPressed,
+      required this.leading,
+      required this.label,
+      this.onLongPress});
 
   final void Function()? onPressed;
+  final void Function()? onLongPress;
   final Widget leading;
   final String label;
 
